@@ -1,0 +1,46 @@
+[project]
+name = "app-circuit"
+dynamic = ["version"]
+description = "Windows GUI для сессий запуска программ, открытия файлов и пауз"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = [
+  "PySide6>=6.9,<7",
+]
+
+[project.optional-dependencies]
+dev = [
+  "PyInstaller>=6.14,<7",
+  "pytest>=9.0.3,<10",
+  "ruff>=0.12,<1",
+]
+
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.setuptools.dynamic]
+version = {file = ["VERSION"]}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+exclude = [
+  ".venv",
+  "build",
+  "dist",
+  "Build_Tools/build",
+  "Build_Tools/dist",
+  "AppCircuit",
+]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "B"]
